@@ -1,0 +1,74 @@
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>{{title}}</title>
+	<style>
+		html {
+			font-family: monospace;
+			font-size: 17px;
+		}
+
+		body {
+			background-color : #f1c40f;
+		}
+
+		.title {
+			margin: auto;
+			text-align: center;
+			font-family: cursive;
+			color: rgba(0,0,0,0.7);
+			margin-top: 50px;
+			margin-bottom: 15px;
+		}
+
+		form {
+			width: 450px;
+			margin: auto;
+			color: white;
+			border-radius: 4px;
+			padding-left: 0;
+		}
+
+		.location--input {
+			width: 100%;
+			border: none;
+			outline: none;
+			padding: 15px;
+			background: #34495e;
+			border-radius: 2px;
+			color: white;
+			font-family: inherit;
+		}
+
+		.btn {
+			margin-top: 10px;
+			width: 100%;
+			border: none;
+			padding: 15px;
+			cursor: pointer;
+			transition: .2s all;
+		}
+
+		.btn:hover {
+			background-color:#fff;
+
+		}
+
+	</style>
+</head>
+<body >
+<h1 class="title">The weather forecast</h1>
+
+
+<form action="/" method="post">
+	<input type="text" name="location" placeholder="Plase Enter Location . . ." class="location--input">
+	<button class="btn">See Forecast</button>
+</form>
+
+<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+
+</body>
+</html>

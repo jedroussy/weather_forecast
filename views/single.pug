@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+    div.row
+        div(class="col-md-8 col-md-offset-2")
+            h2=post.title
+            p=post.description
+            hr
+            each comment in comments
+                h4=comment.commenter
+                p=comment.comment
+            div.col-lg-6
+                div.row
+                    h4 Comment
+                    form(action="/comment",method="POST")
+                        input(type="hidden",name="post_id",value=post._id.toString())
+                        div.form-group
+                            label.control-label name
+                            input(type="text",name="commenter",class="form-control")
+                        div.form-group
+                            label.control-label comment
+                            textarea(name="comment",class="form-control",rows="8")
+                        div.form-group
+                            button.btn.btn-danger Send

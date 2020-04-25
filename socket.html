@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ChatRoom</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <style>
+        .me{
+            font-size: 14px;
+            margin: -4px;
+            border-right: 3px solid #60DF88 !important;
+            padding: 5px;
+            background-color: rgb(239, 255, 241);
+        }
+
+        .join {
+            border-left: none;
+            text-align: center;
+            font-size: 14px;
+            color: green;
+            margin: 3px;
+        }
+
+        .leave {
+            border-left: none;
+            text-align: center;
+            font-size: 14px;
+            color: red;
+            margin: 3px;
+        }
+
+        .you{
+            font-size: 14px;
+            margin: -4px;
+            border-left: 3px solid rgb(255, 112, 0) !important;
+            padding: 5px;
+            padding-left:10px;
+            background-color: rgb(247, 247, 214);
+        }
+        #panelChat {
+            margin-top: 50px;
+            display: none;
+        }
+
+        #panelUsername {
+            margin-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div id="panelUsername" class="panel panel-primary">
+                    <div class="panel-heading">
+                        <b>login user</b>
+                    </div>
+                    <div class="panel-body">
+                        <form id="formUser">
+                            <div class="form-group">
+                                <label for="username">name</label>
+                                <input placeholder="name" type="text" name="username" id="username" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">email</label>
+                                <input placeholder="email" type="text" name="email" id="email" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" id="sendUsername" class="btn btn-danger">Start Support</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div id="panelChat" class="panel panel-primary">
+                    <div class="panel-heading">
+                        <b>Chat Box</b>
+                    </div>
+                    <div class="panel-body" style="background:url('http://subtlepatterns.com/patterns/geometry2.png');height: 300px; ">
+
+                    </div>
+                    <div class="panel-footer">
+                        <input id="message" type="text" name="message" class="form-control" style="display:inline-block;width:90%;" placeholder="Your Message">
+                        <button type="button" id="sendMessage" class="btn btn-sm btn-danger" style="display:inline-block;margin-left:10px;">send</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var userId = '';
+        var messageBox = $('#panelChat .panel-body');
+
+
+        $('#panelUsername').submit(function (e) {
+            e.preventDefault();
+
+            var username = {
+                name : $('#username').val(),
+                email : $('#email').val()
+            }
+
+            socket.emit('new user' , username , function (status) {
+                if(status) {
+                    $('#panelUsername').hide();
+                    $('#panelChat').show();
+                } else {
+                    alert('this user is already in database');
+                }
+            });
+
+        });
+
+        $('#sendMessage').click(function () {
+           socket.emit('new message' , $('#message').val());
+        });
+
+        socket.on('new user' , function (data) {
+            messageBox.append('<div class="clearfix"><blockquote class="join">' + data.username + ' in join chat</blockquote>')
+        });
+
+        socket.on('disconnect' , function (data) {
+
+            if( data.username == undefined ) return;
+
+            messageBox.append('<div class="clearfix"><blockquote class="leave">' + data.username + ' in leave chat</blockquote>')
+        })
+
+        socket.on('connect' , function () {
+            userId = socket.id;
+        })
+
+        socket.on('new message' , function (data) {
+            console.log('your Id: '+userId+ 'and message sender Id: '+data.user.id);
+            if(userId == data.user.id ) {
+                messageBox.append('<div class="clearfix"><blockquote class="me pull-right">' + data.message + '<b> : ' + data.user.name + ' </b></blockquote>')
+                return;
+            }
+            messageBox.append('<div class="clearfix"><blockquote class="you pull-left"><b>' + data.user.name + ' : </b>' + data.message + ' </blockquote>')
+        });
+
+
+    </script>
+</body>
+</html>

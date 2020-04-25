@@ -1,0 +1,12 @@
+extends ../layout.pug
+
+block content
+    div.row(style={'margin-top': '80px'})
+        div.col-lg-3
+            h1 Side Bar
+            div.list-group
+                a(href="/dashboard", class="list-group-item") Home
+                a(href="/dashboard/comment", class="list-group-item") Comment
+                a(href="/dashboard/category", class="list-group-item") Category
+        div.col-lg-9
+            block Section

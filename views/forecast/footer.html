@@ -1,0 +1,32 @@
+	
+	</ul>
+	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/skycons/1396634940/skycons.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.11.2/moment.min.js"></script>
+	<script type="text/javascript">
+	
+			$(document).ready(function(){
+				 var skycons = new Skycons({"color": "white"});  
+
+				  var listItem = $('.weather').children();
+
+				  listItem.each(function(item){
+				  		// time
+				  		var time = moment.unix($(this).find('.day').data('time')).format('dddd');
+				  		$(this).find('.day').text(time);
+
+				  		// weather
+				  		var weather = $(this).children('div').data('weather');
+				  		$(this).find('.day').after('<canvas id="icon'+item+'" width="85" height="85"></canvas>');
+				  		skycons.add("icon"+item, weather);
+				  		
+
+				  });
+				  
+				  skycons.play();
+			});
+
+	</script>
+
+</body>
+</html>

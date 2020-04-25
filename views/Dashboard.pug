@@ -1,0 +1,24 @@
+extends layout.pug
+
+block content
+    div.row.my-5(style={'margin-top': '80px'})
+        div.col-md-8.col-md-offset-2
+            div.panel.panel-default
+                div.panel-heading Dashboard
+                div.panel-body
+                    if(errors)
+                        div.alert.alert-danger
+                            ul
+                                each error in errors
+                                    li= error.msg 
+                    form(class="form-horizontal",method="POST",action="/dashboard/logout")
+                        div.form-group
+                            div.col-md-6.col-md-offset-4
+                                a(class="btn btn-primary",href="/dashboard/profile") Profile
+                        div.form-group
+                            
+                                h1.alert-info Hello #{name}
+                        div.form-group
+                            div.col-md-6.col-md-offset-4
+                                button.btn.btn-primary LogOut
+

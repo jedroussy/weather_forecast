@@ -1,0 +1,26 @@
+extends layout.pug
+
+block Section
+    table.table.table-bordered
+        caption Comment Section
+        thead
+            tr
+                th.
+                    #
+                th.
+                    Comment
+                th.
+                    option
+        tbody
+            each comment , i in comments
+                tr
+                    th.
+                        #{i+1}
+                    td(style="width: 70%;").
+                        #{comment.comment}
+                    td
+                        form(method="POST" , action="/dashboard/comment/" + comment._id + "/delete" , style="display:inline-block;margin-right:5px;")
+                            input(type="hidden",name="_method",value="DELETE")
+                            button(class="btn btn-sm btn-danger") delete
+                        if(comment.approved == false)
+                            a(class="btn btn-sm btn-primary", href="/dashboard/comment/" + comment._id + "/approved") approved

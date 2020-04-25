@@ -1,0 +1,19 @@
+extends ../layout.pug
+
+block Section
+    div.col-lg-6
+        if errors
+            div(class="alert alert-danger")
+                ul
+                    each error in errors
+                        li #{error.msg}
+        h3 Create Category
+        form(action="/dashboard/category/create",method="POST")
+            div.form-group
+                label.control-label name
+                input(type="text",name="name",class="form-control")
+            div.form-group
+                label.control-label slug
+                input(type="text",name="slug",class="form-control")
+            div.form-group
+                button.btn.btn-danger Create

@@ -1,0 +1,29 @@
+extends layout.pug
+
+block Section
+    table.table.table-bordered
+        caption Post Section
+        thead
+            tr
+                th.
+                    #
+                th.
+                    title
+                th.
+                    option
+        tbody
+            each post,i in posts
+                tr
+                    th.
+                        #{i+1}
+                    td.
+                        #{post.title}
+                    td
+                        form(method="POST", action="/dashboard/post/"+post._id+"/delete", style="display:inline-block; margin-right:20px") 
+                            input(type="hidden", name="_method", value="DELETE")
+                            button(class="btn btn-sm btn-danger") delete
+                        a(class="btn btn-sm btn-primary" href="/dashboard/post/"+post._id+"/edit") edit
+    a(href="/dashboard/post/create")
+        button(class="btn btn-success") Create Post
+
+

@@ -1,0 +1,32 @@
+{
+  "name": "alit",
+  "version": "1.0.2",
+  "description": "Node.js Tutorial",
+  "main": "serverw.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "nodemon server.js",
+    "serverw": "nodemon serverw.js",
+    "server1": "nodemon server01.js",
+    "server2": "nodemon server02.js"
+  },
+  "author": "AliTarkashvand",
+  "license": "ISC",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "express-session": "^1.17.0",
+    "express-validator": "^6.3.0",
+    "jade": "^1.11.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^5.8.3",
+    "nodemon": "^2.0.1",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "pug": "^2.0.4",
+    "socket.io": "^2.3.0",
+    "unirest": "^0.6.0"
+  }
+}

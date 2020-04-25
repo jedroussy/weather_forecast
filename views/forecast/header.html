@@ -1,0 +1,105 @@
+<html>
+<head>
+	<meta charset=utf-8>
+	<meta name=viewport content="width=device-width, initial-scale=1">
+	<title>Forecast</title>
+	<style>
+		html {
+		    font-family: monospace;
+    		font-size: 17px;
+		}
+
+		body {
+			background-color : #f1c40f;
+		}
+
+		.title {
+			margin: auto;
+			text-align: center;
+			font-family: cursive;
+			color: rgba(0,0,0,0.7);
+			margin-top: 50px;
+			margin-bottom: 15px;
+		}
+
+		.weather {
+		    width: 450px;
+			margin: auto;
+			color: white;
+			background: #34495e;
+			border-radius: 4px;
+			padding-left: 0;
+			box-shadow: 0px 8px 0px #34495e;
+			margin-bottom: 100px;
+		}	
+
+		.weather > li {
+		    list-style-type: none;
+		    background: rgb(78, 98, 117);
+		}
+
+		.weather li:first-child  {
+ 			border-top-left-radius: 5px;
+		    border-top-right-radius: 5px;
+		}
+
+		.weather li:nth-child(odd) {
+			background-color: #4A5D6F;
+		}
+
+		.weather li:last-child {
+			border-bottom-left-radius: 5px;
+		    border-bottom-right-radius: 5px;
+		}
+
+		.weather > li > div canvas{
+		    position: relative;
+	        top: 25px;
+			left: 30px;
+		}
+
+		.day {
+			padding: 40px;
+			display: inline-block;
+		    position: relative;
+    		bottom: 15px;
+		}
+
+		.temp {
+			display: inline-block;
+    		position: relative;
+		    top: 5px;
+		    left: 85px;
+		}
+
+		.triangle-up {
+			width: 0;
+			height: 0;
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-bottom: 14px solid #e74c3c;	
+			display: inline-block;
+		}
+
+		.max {
+			margin-bottom: 10px;
+		}
+
+		.max span {
+			font-size: 25px;
+		}
+
+		.triangle-down {
+			width: 0;
+			height: 0;
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-top: 14px solid #1abc9c;
+			display: inline-block;
+		}
+
+	</style>
+</head>
+<body >
+	<h1 class="title">The weather forecast "{{title}}"</h1>
+	<ul class="weather">

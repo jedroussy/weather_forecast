@@ -1,0 +1,12 @@
+extends layout.pug
+
+block content
+    div.row
+        div(class="col-md-8 col-md-offset-2")
+            each post , i in posts
+                h2 #{post.title}
+                p #{post.description.substring(0,200)} ...
+                a(href="/article/"+ post.slug)
+                    button(class="btn btn-sm btn-primary") more
+                if( i+1 != posts.length )
+                    hr

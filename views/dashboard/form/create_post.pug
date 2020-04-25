@@ -1,0 +1,24 @@
+extends ../layout.pug
+
+block Section
+    div.col-lg-6
+        if errors
+            div(class="alert alert-danger")
+                ul
+                    each error in errors
+                        li #{error.msg}
+        h3 Create Post
+        form(action="/dashboard/post/create",method="POST")
+            div.form-group
+                label.control-label title
+                input(type="text",name="title",class="form-control")
+            div.form-group
+                label.control-label description
+                textarea(name="description",class="form-control")
+            div.form-group
+                label.control-label Category
+                select(name="category",class="form-control")
+                    each category in categorys
+                        option(value=category._id.toString()) #{category.name}
+            div.form-group
+                button.btn.btn-danger Create

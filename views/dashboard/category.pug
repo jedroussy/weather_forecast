@@ -1,0 +1,28 @@
+extends layout.pug
+
+block Section
+    table.table.table-bordered
+        caption Category Section
+        thead
+            tr
+                th.
+                    #
+                th.
+                    Category
+                th.
+                    option
+        tbody
+            each category , i  in categorys
+                tr
+                    th.
+                        #{ i + 1 }
+                    td.
+                        #{category.name}
+                    td
+                        form(method="POST" , action="/dashboard/category/" + category._id + "/delete" , style="display:inline-block;margin-right:5px;")
+                            input(type="hidden",name="_method",value="DELETE")
+                            button(class="btn btn-sm btn-danger") delete
+                        a(class="btn btn-sm btn-primary", href="/dashboard/category/" + category._id + "/edit") edit
+
+    a(href="/dashboard/category/create")
+        button(class="btn btn-success") Create Category

@@ -1,0 +1,20 @@
+extends ../layout.pug
+
+block Section
+    div.col-lg-6
+        h3 Edit Post
+        form(action="/dashboard/post/" + post._id  ,method="POST")
+            input(type="hidden",name="_method",value="PUT")
+            div.form-group
+                label.control-label title
+                input(type="text",name="title",class="form-control",value=post.title)
+            div.form-group
+                label.control-label description
+                textarea(name="description",class="form-control") #{post.description}
+            div.form-group
+                label.control-label Category
+                select(name="category",class="form-control")
+                    each category in categorys
+                        option(value=category._id.toString() , selected=(category._id.toString() == post.category_id ) ? true : false ) #{category.name}
+            div.form-group
+                button.btn.btn-danger update

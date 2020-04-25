@@ -1,0 +1,15 @@
+extends ../layout.pug
+
+block Section
+    div.col-lg-6
+        h3 Create Category
+        form(action="/dashboard/category/" + category._id ,method="POST")
+            input(type='hidden',name="_method",value="PUT")
+            div.form-group
+                label.control-label name
+                input(type="text",name="name",class="form-control",value=category.name)
+            div.form-group
+                label.control-label slug
+                input(type="text",name="slug",class="form-control",value=category.slug)
+            div.form-group
+                button.btn.btn-danger update
